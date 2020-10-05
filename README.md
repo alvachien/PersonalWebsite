@@ -1,14 +1,16 @@
 # Personal Website
+
 Personal website, built with Gatsby
 
 ## Requirement
 
 ### Multiple Languages support
-Plugin: 
+
+Plugin:
 
 ### Themes support
 
-### Landing page 
+### Landing page
 
 ### Blogs from multiple processors
 
@@ -18,7 +20,7 @@ Search engine optimizer
 
 ### Sitemap
 
-Site map support by plugin: *gatsby-plugin-sitemap*
+Site map support by plugin: _gatsby-plugin-sitemap_
 
 ## Credits
 
@@ -26,10 +28,10 @@ Built on following libraries:
 
 - Gatsby.js
 - Gatsby plugins
-    - gatsby-plugin-react-helmet
-    - gatsby-plugin-sitemap
-    - gatsby-source-filesystem
-    - gatsby-plugin-typography
+  - gatsby-plugin-react-helmet
+  - gatsby-plugin-sitemap
+  - gatsby-source-filesystem
+  - gatsby-plugin-typography
 
 ## Authors
 

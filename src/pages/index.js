@@ -1,14 +1,16 @@
-import React from "react"
-import Layout from "../components/layout"
+import React from "react";
+import Header from '../components/header';
+import Parallax from '../components/parallax';
+import Container from '../components/container';
 
 export default function Home() {
   return (
-    <Layout>
-      <h1>Hi! I'm building a fake Gatsby site as part of a tutorial!</h1>
-      <p>
-        What do I like to do? Lots of course but definitely enjoy building
-        websites.
-      </p>
-    </Layout>
+    <div>
+      <Header title="alvachien.com"></Header>
+      <Parallax title="Alva Chien"></Parallax>
+      <Container>
+        Test
+      </Container>
+    </div>
   );
 }

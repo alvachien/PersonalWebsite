@@ -1,141 +1,63 @@
-import React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import Hidden from "@material-ui/core/Hidden";
-import Drawer from "@material-ui/core/Drawer";
-import Menu from "@material-ui/icons/Menu";
+import React from "react"
 
-export default function Header({ children }) {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    React.useEffect(() => {
-        if (props.changeColorOnScroll) {
-            window.addEventListener("scroll", headerColorChange);
-        }
-        return function cleanup() {
-            if (props.changeColorOnScroll) {
-                window.removeEventListener("scroll", headerColorChange);
-            }
-        };
-    });
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
-    const headerColorChange = () => {
-        const { color, changeColorOnScroll } = props;
-        const windowsScrollTop = window.pageYOffset;
-        if (windowsScrollTop > changeColorOnScroll.height) {
-            document.body
-                .getElementsByTagName("header")[0]
-                .classList.remove(classes[color]);
-            document.body
-                .getElementsByTagName("header")[0]
-                .classList.add(classes[changeColorOnScroll.color]);
-        } else {
-            document.body
-                .getElementsByTagName("header")[0]
-                .classList.add(classes[color]);
-            document.body
-                .getElementsByTagName("header")[0]
-                .classList.remove(classes[changeColorOnScroll.color]);
-        }
-    };
-    const { color, rightLinks, leftLinks, brand, fixed, absolute } = props;
-    const appBarClasses = classNames({
-        [classes.appBar]: true,
-        [classes[color]]: color,
-        [classes.absolute]: absolute,
-        [classes.fixed]: fixed
-    });
-
-    const brandComponent = <Button className={classes.title}>{brand}</Button>;
-    return (
-        <AppBar className={appBarClasses}>
-            <Toolbar className={classes.container}>
-                {leftLinks !== undefined ? brandComponent : null}
-                <div className={classes.flex}>
-                    {leftLinks !== undefined ? (
-                        <Hidden smDown implementation="css">
-                            {leftLinks}
-                        </Hidden>
-                    ) : (
-                            brandComponent
-                        )}
-                </div>
-                <Hidden smDown implementation="css">
-                    {rightLinks}
-                </Hidden>
-                <Hidden mdUp>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerToggle}>
-                        <Menu />
-                    </IconButton>
-                </Hidden>
-            </Toolbar>
-            <Hidden mdUp implementation="js">
-                <Drawer
-                    variant="temporary"
-                    anchor={"right"}
-                    open={mobileOpen}
-                    classes={{
-                        paper: classes.drawerPaper
-                    }}
-                    onClose={handleDrawerToggle}>
-                    <div className={classes.appResponsive}>
-                        {leftLinks}
-                        {rightLinks}
-                    </div>
-                </Drawer>
-            </Hidden>
-        </AppBar>
-    );
+export default function Header(props) {
+  return (
+    <nav className={`navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg`} color-on-scroll="100" id="sectionsNav">
+      <div className={"container"}>
+        <div className={"navbar-translate"}>
+          <a className={"navbar-brand"} href="/">
+            {props.title}
+          </a>
+          <button className={"navbar-toggler"} type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="sr-only">Toggle navigation</span>
+            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div className={"collapse navbar-collapse"}>
+          <ul className={"navbar-nav ml-auto"}>
+            <li className={"dropdown nav-item"}>
+              <a href="#" className={"dropdown-toggle nav-link"} data-toggle="dropdown">
+                <i className="material-icons">apps</i> Components
+              </a>
+              <div className="dropdown-menu dropdown-with-icons">
+                <a href="./index.html" className="dropdown-item">
+                  <i className="material-icons">layers</i> All Components
+                </a>
+                <a href="https://demos.creative-tim.com/material-kit/docs/2.0/getting-started/introduction.html" className="dropdown-item">
+                  <i className="material-icons">content_paste</i> Documentation
+                </a>
+              </div>
+            </li>
+            <li className={"nav-item"}>
+              <a className="nav-link" href="/">
+                <i className="material-icons">cloud_download</i> Download
+              </a>
+            </li>
+            <li className={"nav-item"}>
+              <a className="nav-link" href="https://www.creative-tim.com/product/material-kit-pro" target="_blank">
+                <i className="material-icons">unarchive</i> Upgrade to PRO
+              </a>
+            </li>
+            <li className={"nav-item"}>
+              <a className="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter" rel="nofollow">
+                <i className="fa fa-twitter"></i>
+              </a>
+            </li>
+            <li className={"nav-item"}>
+              <a className="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook" rel="nofollow">
+                <i className="fa fa-facebook-square"></i>
+              </a>
+            </li>
+            <li className={"nav-item"}>
+              <a className="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram" rel="nofollow">
+                <i className="fa fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
-
-Header.defaultProp = {
-    color: "white"
-};
-
-Header.propTypes = {
-    color: PropTypes.oneOf([
-        "primary",
-        "info",
-        "success",
-        "warning",
-        "danger",
-        "transparent",
-        "white",
-        "rose",
-        "dark"
-    ]),
-    rightLinks: PropTypes.node,
-    leftLinks: PropTypes.node,
-    brand: PropTypes.string,
-    fixed: PropTypes.bool,
-    absolute: PropTypes.bool,
-    // this will cause the sidebar to change the color from
-    // props.color (see above) to changeColorOnScroll.color
-    // when the window.pageYOffset is heigher or equal to
-    // changeColorOnScroll.height and then when it is smaller than
-    // changeColorOnScroll.height change it back to
-    // props.color (see above)
-    changeColorOnScroll: PropTypes.shape({
-        height: PropTypes.number.isRequired,
-        color: PropTypes.oneOf([
-            "primary",
-            "info",
-            "success",
-            "warning",
-            "danger",
-            "transparent",
-            "white",
-            "rose",
-            "dark"
-        ]).isRequired
-    })
-};
