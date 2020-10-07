@@ -12,6 +12,10 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+@import url('http://fonts.googleapis.com/icon?family=Material+Icons');
+
   .card {
     font-size: .875rem;
   }
@@ -23,7 +27,7 @@
   }
   
   html {
-    font-family: sans-serif;
+    font-family: 'Roboto' sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
